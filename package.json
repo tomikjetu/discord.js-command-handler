@@ -1,0 +1,13 @@
+{
+  "name": "@tomdev/discord.js-command-handler",
+  "version": "1.0.2",
+  "description": "Command handler for discord.js bots",
+  "main": "handler.js",
+  "keywords": [
+    "discord.js",
+    "command",
+    "handler"
+  ],
+  "author": "tomdeveloper",
+  "license": "ISC"
+}
