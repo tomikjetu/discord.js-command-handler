@@ -1,6 +1,6 @@
 {
   "name": "@tomdev/discord.js-command-handler",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Command handler for discord.js bots",
   "main": "handler.js",
   "keywords": [
@@ -9,5 +9,9 @@
     "handler"
   ],
   "author": "tomdeveloper",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/TGamingStudio/discord.js-command-handler"
+  }
 }
