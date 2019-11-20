@@ -57,7 +57,7 @@ module.exports = {
 - Handles commands, runs commands *run* function
 `handler.reloadCommands(handler)`
 - **Handler** - Handler to reload commands withour restarting server
-- [Example]()
+- [Example Reload Command](https://github.com/TGamingStudio/discord.js-command-handler/blob/master/example-commands/reload.js)
 ##### Command object
 - **name**: Command name which will be searched for: !example
 - **aliases**: Aliases for command which will be searched for: !e
