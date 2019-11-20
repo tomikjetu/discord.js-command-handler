@@ -30,8 +30,8 @@ function handleCommand(message) {
 
 function loadCommands(handler) {
     console.log("Loading Commands")
-    fs.readdirSync(handler.path).forEach(file => {
-        var command = require(handler.path + "/" + file)
+    fs.readdirSync(process.cwd() +handler.path).forEach(file => {
+        var command = require(process.cwd() + handler.path + "/" + file)
         if(command.name && command.category && command.description && command.usage && command.run){
             handler.commands[command.name] = command
             for(alias in command.aliases){
