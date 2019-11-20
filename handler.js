@@ -8,8 +8,10 @@ var handler = function (client, path, prefix) {
     this.aliases = {}
     this.startTime = Date.now()
     client.startTime = Date.now()
+    client.handler = this
     loadCommands(this)
     this.handleCommand = handleCommand
+    this.reloadCommands = reloadCommands
 }
 module.exports = handler
 
@@ -28,16 +30,33 @@ function handleCommand(message) {
     }
 }
 
+function reloadCommands(handler) {
+    console.log("Reloading Commands")
+    handler.aliases = {}
+    var reloadStart = Date.now()
+    for (command in handler.commands) {
+        delete require.cache[require.resolve(process.cwd() + handler.path + "/" + handler.commands[command].filename)]
+        delete handler.commands[command]
+    }
+    load(handler)
+    console.log("All commands reloaded in " + (Date.now() - reloadStart) + "ms")
+}
+
 function loadCommands(handler) {
     console.log("Loading Commands")
-    fs.readdirSync(process.cwd() +handler.path).forEach(file => {
+    load(handler)
+    console.log("All commands loaded in " + (Date.now() - handler.startTime) + "ms")
+}
+
+function load(handler) {
+    fs.readdirSync(process.cwd() + handler.path).forEach(file => {
         var command = require(process.cwd() + handler.path + "/" + file)
-        if(command.name && command.category && command.description && command.usage && command.run){
+        if (command.name && command.category && command.description && command.usage && command.run) {
             handler.commands[command.name] = command
-            for(alias in command.aliases){
+            handler.commands[command.name].filename = file
+            for (alias in command.aliases) {
                 handler.aliases[command.aliases[alias]] = command.name
             }
         }
     })
-    console.log("All commands loaded in " + (Date.now() - handler.startTime) + "ms")
 }

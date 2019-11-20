@@ -49,12 +49,15 @@ module.exports = {
 - **prefix** - prefix for commands
 ##### About
 - Creates new handler
-- Adds variable to client object (startTime)
+- Adds variables to client object *(startTime, handler)*
 
 `handler.handleCommand(message)`
 - **Message** - message input from user
 ##### About
 - Handles commands, runs commands *run* function
+`handler.reloadCommands(handler)`
+- **Handler** - Handler to reload commands withour restarting server
+- [Example]()
 ##### Command object
 - **name**: Command name which will be searched for: !example
 - **aliases**: Aliases for command which will be searched for: !e
