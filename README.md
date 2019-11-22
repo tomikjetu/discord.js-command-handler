@@ -21,7 +21,7 @@ var handler = require("@tomdev/discord.js-command-handler")
 //initialize handler, pass client, folder with command files, prefix
 var prefix = "!" //same for every server
 /*var prefix = { //define for each server
-    "default:" "!" //if server hasn't
+    "default": "!" //if server hasn't
     "6166856194426361379": "?" //prefix for server with id
     "6166856194426361380": "$" //prefix for server with id
 }*/ 
