@@ -19,7 +19,13 @@ var client = new discord.Client()
 
 var handler = require("@tomdev/discord.js-command-handler")
 //initialize handler, pass client, folder with command files, prefix
-var cmdhandler = new handler(client, "/commands", "!")
+var prefix = "!" //same for every server
+/*var prefix = { //define for each server
+    "default:" "!" //if server hasn't
+    "6166856194426361379": "?" //prefix for server with id
+    "6166856194426361380": "$" //prefix for server with id
+}*/ 
+var cmdhandler = new handler(client, "/commands", prefix)
 
 //handle command on message event
 client.on("message", (message) => {
@@ -46,7 +52,7 @@ module.exports = {
 `new handler(client, path, prefix)` 
 - **Client** - Discord.js Client
 - **Path** - path to commands folder (with / on start)
-- **prefix** - prefix for commands
+- **prefix** - string (every guild has same prefix) / object, with default and server prefixes
 ##### About
 - Creates new handler
 - Adds variables to client object *(startTime, handler)*
@@ -59,6 +65,13 @@ module.exports = {
 `handler.reloadCommands(handler)`
 - **Handler** - Handler to reload commands withour restarting server
 - [Example Reload Command](https://github.com/TGamingStudio/discord.js-command-handler/blob/master/example-commands/reload.js)
+
+`handler.getPrefix(id)`
+- **Id** - Id of guild to get prefix for guild
+
+`handler.updatePrefix(prefix)`
+- **Prefix** - string (every guild has same prefix) / object, with default and server prefixes
+
 ##### Command object
 - **name**: Command name which will be searched for: !example
 - **aliases**: Aliases for command which will be searched for: !e

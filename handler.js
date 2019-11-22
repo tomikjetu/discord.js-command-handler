@@ -4,21 +4,28 @@ var handler = function (client, path, prefix) {
     this.client = client
     this.path = path
     this.prefix = prefix
+
     this.commands = {}
     this.aliases = {}
     this.startTime = Date.now()
+
     client.startTime = Date.now()
     client.handler = this
+
     loadCommands(this)
+
     this.handleCommand = handleCommand
     this.reloadCommands = reloadCommands
+    this.getPrefix = getPrefix
+    this.updatePrefix = (prefix) => this.prefix = prefix
 }
 module.exports = handler
 
 function handleCommand(message) {
-    if (message.author.bot) return;
-    if (!message.content.startsWith(this.prefix)) return
-    var plain = message.content.substr(this.prefix.length, message.content.length - this.prefix.length)
+    if (message.author.bot) return
+    var prefix = this.getPrefix(message.guild.id)
+    if (!message.content.startsWith(prefix)) return
+    var plain = message.content.substr(prefix.length, message.content.length - prefix.length)
     var args = plain.trim().split(" ")
     var command = args.shift().toLowerCase()
     var executeCmd = this.commands[command] || this.commands[this.aliases[command]]
@@ -59,4 +66,15 @@ function load(handler) {
             }
         }
     })
+}
+
+function getPrefix(id) {
+    var prefix = this.prefix
+    switch (typeof prefix) {
+        case "object":
+            if (prefix[id]) return prefix[id]
+            else return prefix.default
+        case "string":
+            return prefix
+    }
 }

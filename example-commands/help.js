@@ -17,6 +17,7 @@ module.exports = {
                     embed.addField('Aliases', command.aliases, true)
                 }
                 embed.addField('Usage', command.usage, true)
+                message.channel.send("Arguments: <> = needed argument, [] = optional argument")
                 message.channel.send(embed)
             } else {
                 message.channel.send("Invalid command")
@@ -30,7 +31,7 @@ module.exports = {
             })
             var embed = new discord.RichEmbed()
                 .setTitle("Main Help")
-                .setDescription("<> = needed argument, [] = optional argument")
+                .setDescription("Prefix: " + bot.handler.getPrefix(message.guild.id))
             for (category in list) {
                 var commands = []
                 for (cmd in list[category]) {
