@@ -14,5 +14,5 @@
     "type" : "git",
     "url" : "https://github.com/TGamingStudio/discord.js-command-handler"
   },
-  "files": ["handler.js", "package.json", "README.MD"]
+  "files": ["handler.js", "package.json", "README.MD", "methods/*"]
 }
