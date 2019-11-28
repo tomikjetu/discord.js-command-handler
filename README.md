@@ -57,6 +57,11 @@ module.exports = {
 - Creates new handler
 - Adds variables to client object *(startTime, handler)*
 
+`handler.handleMention(function)`
+- **Function** - function ran on client mention
+##### About
+- When bot is mentioned, runs *function* with parameters *client, message*
+
 `handler.handleCommand(message)`
 - **Message** - message input from user
 ##### About

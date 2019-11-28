@@ -1,6 +1,11 @@
 function handleCommand(message) {
     if (message.author.bot)
         return;
+
+    if (message.isMemberMentioned(this.client.user) && this.mentionFunction) {
+        this.mentionFunction(this.client, message)
+    }
+
     var prefix = this.getPrefix(message.guild.id);
     if (!message.content.startsWith(prefix))
         return;

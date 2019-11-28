@@ -20,10 +20,11 @@ var handler = function (client, path, prefix) {
 
     //Load commands
     loadCommands(this)
+    this.updatePrefix = (prefix) => this.prefix = prefix
+    this.onMention = (func) => this.mentionFunction = func
 }
 module.exports = handler
 
 handler.prototype.handleCommand = handleCommand
 handler.prototype.reloadCommands = reloadCommands
 handler.prototype.getPrefix = getPrefix
-handler.prototype.updatePrefix = (prefix) => this.prefix = prefix
