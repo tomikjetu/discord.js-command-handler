@@ -60,18 +60,31 @@ new handler(client, path, prefix)
 - Adds variables to client object *(startTime, handler)*
 ---
 ```javascript
-handler.handleMention(function)
-```
-- **Function** - function ran on client mention
-##### About
-- When bot is mentioned, runs *function* with parameters *client, message*
----
-```javascript
 handler.handleCommand(message)
 ```
 - **Message** - message input from user
 ##### About
 - Handles commands, runs commands *run* function
+---
+```javascript
+handler.handleMention(function)
+```
+- **Function** - function ran on client mention
+
+<details>
+  <summary>Example</summary>
+
+  ```javascript
+  function func(bot, message){
+      message.reply("I got pinged.")
+  }
+  cmdhandler.handleMention(func)
+  ```
+
+</details>
+
+##### About
+- When bot is mentioned, runs *function* with parameters *client, message*
 ---
 ```javascript
 handler.reloadCommands(handler)
@@ -88,7 +101,7 @@ handler.getPrefix(id)
 handler.updatePrefix(prefix)
 ```
 - **Prefix** - string (every guild has same prefix) / object, with default and server prefixes
-
+---
 ##### Command object
 - **name**: Command name which will be searched for: !example
 - **aliases**: Aliases for command which will be searched for: !e
