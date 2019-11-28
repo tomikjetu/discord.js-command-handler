@@ -49,7 +49,9 @@ module.exports = {
 ```
 
 ### Features and Description
-`new handler(client, path, prefix)` 
+```javascript
+new handler(client, path, prefix)
+``` 
 - **Client** - Discord.js Client
 - **Path** - path to commands folder (with / on start)
 - **prefix** - string (every guild has same prefix) / object, with default and server prefixes
@@ -57,24 +59,34 @@ module.exports = {
 - Creates new handler
 - Adds variables to client object *(startTime, handler)*
 
-`handler.handleMention(function)`
+```javascript
+handler.handleMention(function)
+```
 - **Function** - function ran on client mention
 ##### About
 - When bot is mentioned, runs *function* with parameters *client, message*
 
-`handler.handleCommand(message)`
+```javascript
+handler.handleCommand(message)
+```
 - **Message** - message input from user
 ##### About
 - Handles commands, runs commands *run* function
 
-`handler.reloadCommands(handler)`
+```javascript
+handler.reloadCommands(handler)
+```
 - **Handler** - Handler to reload commands withour restarting server
 - [Example Reload Command](https://github.com/TGamingStudio/discord.js-command-handler/blob/master/example-commands/reload.js)
 
-`handler.getPrefix(id)`
+```javascript
+handler.getPrefix(id)
+```
 - **Id** - Id of guild to get prefix for guild
 
-`handler.updatePrefix(prefix)`
+```javascript
+handler.updatePrefix(prefix)
+```
 - **Prefix** - string (every guild has same prefix) / object, with default and server prefixes
 
 ##### Command object
