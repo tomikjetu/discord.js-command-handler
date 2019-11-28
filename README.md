@@ -58,32 +58,32 @@ new handler(client, path, prefix)
 ##### About
 - Creates new handler
 - Adds variables to client object *(startTime, handler)*
-
+---
 ```javascript
 handler.handleMention(function)
 ```
 - **Function** - function ran on client mention
 ##### About
 - When bot is mentioned, runs *function* with parameters *client, message*
-
+---
 ```javascript
 handler.handleCommand(message)
 ```
 - **Message** - message input from user
 ##### About
 - Handles commands, runs commands *run* function
-
+---
 ```javascript
 handler.reloadCommands(handler)
 ```
 - **Handler** - Handler to reload commands withour restarting server
 - [Example Reload Command](https://github.com/TGamingStudio/discord.js-command-handler/blob/master/example-commands/reload.js)
-
+---
 ```javascript
 handler.getPrefix(id)
 ```
 - **Id** - Id of guild to get prefix for guild
-
+---
 ```javascript
 handler.updatePrefix(prefix)
 ```
