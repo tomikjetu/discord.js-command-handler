@@ -53,7 +53,7 @@ module.exports = {
 new handler(client, path, prefix)
 ``` 
 - **Client** - Discord.js Client
-- **Path** - path to commands folder (with / on start)
+- **Path** - path to commands folder (All folders inside will be loaded)
 - **prefix** - string (every guild has same prefix) / object, with default and server prefixes
 ##### About
 - Creates new handler

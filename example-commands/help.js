@@ -1,5 +1,8 @@
 var fs = require("fs")
 var discord = require("discord.js")
+//This is simple help command, which loads all files (Creates discord embed) in provided directory path.
+//Wont work with directories in directories 
+//Needs changes for your code - edit paths
 module.exports = {
     name: "help",
     category: "Main",
@@ -7,7 +10,7 @@ module.exports = {
     usage: "!help [command name]",
     run: async function (bot, command, args, message) {
         if (args.length) {
-            if (fs.existsSync("./example-commands/" + args[0] + ".js")) {
+            if (fs.existsSync("./example-commands/" + args[0] + ".js")) { 
                 var command = require("./" + args[0] + ".js")
                 var embed = new discord.RichEmbed()
                     .setTitle(command.name.charAt(0).toUpperCase() + command.name.slice(1))
