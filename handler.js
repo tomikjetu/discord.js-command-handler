@@ -1,7 +1,8 @@
-const { handleCommand } = require("./methods/handleCommand")
 const { reloadCommands } = require("./methods/reloadCommands")
+const { handleCommand } = require("./methods/handleCommand")
 const { loadCommands } = require("./methods/loadCommands")
 const { getPrefix } = require("./methods/getPrefix")
+const { server } = require("./constructors/server")
 
 var handler = function (client, path, prefix) {
     //user variables
@@ -13,6 +14,9 @@ var handler = function (client, path, prefix) {
     this.commands = {}
     this.aliases = {}
     this.startTime = Date.now()
+
+    //tools 
+    this.getServer = (id) => { return new server(id, this) }
 
     //modifly client
     client.startTime = Date.now()
