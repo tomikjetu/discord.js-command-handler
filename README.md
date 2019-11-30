@@ -38,7 +38,7 @@ Example commands on [Github](https://github.com/TGamingStudio/discord.js-command
 ```javascript
 module.exports = {
     name: "example", //neded
-    aliases: ["e", "exa"], //needed
+    aliases: ["e", "exa"],
     category: "Main",
     description: "This is an example command",
     usage: "!example",

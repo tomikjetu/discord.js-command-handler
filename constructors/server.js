@@ -9,7 +9,7 @@ var server = function (id, handler) {
 
     //functions
     this.getId = () => { return this.id }
-    this.getName = () => { return guild.name }
+    this.getName = () => { return this.guild.name }
     var defaultUserCountOptions = {
         "users": true,
         "bots": true,
@@ -18,11 +18,11 @@ var server = function (id, handler) {
     this.getUserCount = (options = defaultUserCountOptions) => {
         var count = 0
         if (!options.onlineOnly) {
-            if (options.users) count += guild.members.filter(member => !member.user.bot).size;
-            if (options.bots) count += guild.members.filter(member => member.user.bot).size;
+            if (options.users) count += this.guild.members.filter(member => !member.user.bot).size;
+            if (options.bots) count += this.guild.members.filter(member => member.user.bot).size;
         } else {
-            if (options.users) count += guild.members.filter(member => !member.user.bot).filter(member => member.presence.status == "online").size
-            if (options.bots) count += guild.members.filter(member => member.user.bot).filter(member => member.presence.status == "online").size
+            if (options.users) count += this.guild.members.filter(member => !member.user.bot).filter(member => member.presence.status == "online").size
+            if (options.bots) count += this.guild.members.filter(member => member.user.bot).filter(member => member.presence.status == "online").size
         }
         return count
     }

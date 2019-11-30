@@ -4,7 +4,7 @@ function load(handler) {
     paths.forEach(file => {
         if (!file.endsWith(".js")) return
         var command = require(file)
-        if (command.name && command.category && command.description && command.usage && command.run) {
+        if (command.name && command.run) {
             handler.commands[command.name] = command;
             handler.commands[command.name].filename = file;
             for (alias in command.aliases) {
