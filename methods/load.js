@@ -6,9 +6,11 @@ function load(handler) {
         var command = require(file)
         if (command.name && command.run) {
             handler.commands[command.name] = command;
-            handler.commands[command.name].filename = file;
-            for (alias in handler.command[command.name].aliases) {
-                handler.aliases[command.aliases[alias]] = command.name
+            handler.commands[command.name].filename = file
+            if(handler.command[command.name].aliases){
+                for (alias in handler.command[command.name].aliases) {
+                    handler.aliases[handler.command[command.name].aliases[alias]] = command.name
+                }
             }
         }
     })
