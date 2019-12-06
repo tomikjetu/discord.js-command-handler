@@ -4,7 +4,7 @@ function reloadCommands(handler) {
     handler.aliases = {};
     var reloadStart = Date.now();
     for (command in handler.commands) {
-        delete require.cache[require.resolve(process.cwd() + handler.path + "/" + handler.commands[command].filename)];
+        delete require.cache[require.resolve(handler.commands[command].filename)];
         delete handler.commands[command];
     }
     load(handler);

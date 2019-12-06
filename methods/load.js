@@ -7,8 +7,8 @@ function load(handler) {
         if (command.name && command.run) {
             handler.commands[command.name] = command;
             handler.commands[command.name].filename = file;
-            for (alias in command.aliases) {
-                handler.aliases[command.aliases[alias]] = command.name;
+            for (alias in handler.command[command.name].aliases) {
+                handler.aliases[command.aliases[alias]] = command.name
             }
         }
     })
