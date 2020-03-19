@@ -2,7 +2,7 @@ function handleCommand(message) {
     if (message.author.bot)
         return;
 
-    if (message.mentions.users.has(client.user.id) && this.mentionFunction) {
+    if (message.mentions.users.has(this.client.user.id) && this.mentionFunction) {
         this.mentionFunction(this.client, message)
     }
 
