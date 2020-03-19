@@ -17,7 +17,7 @@ function handleCommand(message) {
         var startTime = Date.now();
         executeCmd.run(this.client, command, args, message).then(function () {
             console.log("(" + message.author.username + " (" + message.author.id + ")) Command " + command + " executed in " + (Date.now() - startTime) + "ms");
-        });
+        })
     }
 }
 exports.handleCommand = handleCommand
