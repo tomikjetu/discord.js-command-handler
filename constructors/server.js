@@ -3,9 +3,9 @@ var server = function (id, handler) {
     this.handler = handler;
 
     //check if server exists
-    if (!this.handler.client.guilds.get(this.id)) throw "Unknown server"
+    if (!this.handler.client.guilds.resolve(this.id)) throw "Unknown server"
 
-    this.guild = this.handler.client.guilds.get(this.id)
+    this.guild = this.handler.client.guilds.resolve(this.id)
 
     //functions
     this.getId = () => { return this.id }
