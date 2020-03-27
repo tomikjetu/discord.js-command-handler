@@ -18,11 +18,11 @@ var server = function (id, handler) {
     this.getUserCount = (options = defaultUserCountOptions) => {
         var count = 0
         if (!options.onlineOnly) {
-            if (options.users) count += this.guild.members.filter(member => !member.user.bot).size;
-            if (options.bots) count += this.guild.members.filter(member => member.user.bot).size;
+            if (options.users) count += this.guild.members.cache.filter(member => !member.user.bot).size;
+            if (options.bots) count += this.guild.members.cache.filter(member => member.user.bot).size;
         } else {
-            if (options.users) count += this.guild.members.filter(member => !member.user.bot).filter(member => member.presence.status == "online").size
-            if (options.bots) count += this.guild.members.filter(member => member.user.bot).filter(member => member.presence.status == "online").size
+            if (options.users) count += this.guild.members.cache.filter(member => !member.user.bot).filter(member => member.presence.status == "online").size
+            if (options.bots) count += this.guild.members.cache.filter(member => member.user.bot).filter(member => member.presence.status == "online").size
         }
         return count
     }
