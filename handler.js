@@ -15,20 +15,25 @@ var handler = function (client, path, prefix) {
     this.aliases = {}
     this.startTime = Date.now()
 
-    //tools 
-    this.getServer = (id) => { return new server(id, this) }
-
     //modifly client
     client.startTime = Date.now()
     client.handler = this
 
     //Load commands
     loadCommands(this)
-    this.updatePrefix = (prefix) => this.prefix = prefix
-    this.onMention = (func) => this.mentionFunction = func
 }
 module.exports = handler
 
+//load
+handler.prototype.onMention = function (func) { this.mentionFunction = func }
+
+//modify client
+handler.prototype.updatePrefix = function (prefix) { this.prefix = prefix }
+
+//tools
+handler.prototype.getServer = function (id) { return new server(id, this) }
+
+//methods
 handler.prototype.handleCommand = handleCommand
 handler.prototype.reloadCommands = reloadCommands
 handler.prototype.getPrefix = getPrefix

@@ -7,24 +7,23 @@ var server = function (id, handler) {
 
     this.guild = this.handler.client.guilds.resolve(this.id)
 
-    //functions
-    this.getId = () => { return this.id }
-    this.getName = () => { return this.guild.name }
-    var defaultUserCountOptions = {
-        "users": true,
-        "bots": true,
-        "onlineOnly": false
+}
+server.prototype.getId = function () { return this.id }
+server.prototype.getName = function () { return this.guild.name }
+var defaultUserCountOptions = {
+    "users": true,
+    "bots": true,
+    "onlineOnly": false
+}
+server.prototype.getUserCount = function (options = defaultUserCountOptions) {
+    var count = 0
+    if (!options.onlineOnly) {
+        if (options.users) count += this.guild.members.cache.filter(member => !member.user.bot).size;
+        if (options.bots) count += this.guild.members.cache.filter(member => member.user.bot).size;
+    } else {
+        if (options.users) count += this.guild.members.cache.filter(member => !member.user.bot).filter(member => member.presence.status == "online").size
+        if (options.bots) count += this.guild.members.cache.filter(member => member.user.bot).filter(member => member.presence.status == "online").size
     }
-    this.getUserCount = (options = defaultUserCountOptions) => {
-        var count = 0
-        if (!options.onlineOnly) {
-            if (options.users) count += this.guild.members.cache.filter(member => !member.user.bot).size;
-            if (options.bots) count += this.guild.members.cache.filter(member => member.user.bot).size;
-        } else {
-            if (options.users) count += this.guild.members.cache.filter(member => !member.user.bot).filter(member => member.presence.status == "online").size
-            if (options.bots) count += this.guild.members.cache.filter(member => member.user.bot).filter(member => member.presence.status == "online").size
-        }
-        return count
-    }
+    return count
 }
 exports.server = server
