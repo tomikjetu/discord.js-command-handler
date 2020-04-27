@@ -6,7 +6,6 @@ var server = function (id, handler) {
     if (!this.handler.client.guilds.resolve(this.id)) throw "Unknown server"
 
     this.guild = this.handler.client.guilds.resolve(this.id)
-
 }
 server.prototype.getId = function () { return this.id }
 server.prototype.getName = function () { return this.guild.name }
