@@ -12,16 +12,16 @@ module.exports = {
         if (args.length) {
             if (fs.existsSync("./example-commands/" + args[0] + ".js")) { 
                 var command = require("./" + args[0] + ".js")
-                var embed = new discord.RichEmbed()
+                var embed = new discord.MessageEmbed()
                     .setTitle(command.name.charAt(0).toUpperCase() + command.name.slice(1))
                     .setDescription(command.description)
                 embed.addField('Category', command.category, true)
                 if(command.aliases){
-                    embed.addField('Aliases', command.aliases, true)
+                    embed.addField('Aliases', command.aliases.join(", "), true)
                 }
                 embed.addField('Usage', command.usage, true)
                 message.channel.send("Arguments: <> = needed argument, [] = optional argument")
-                message.channel.send(embed)
+                message.channel.send({embeds: [embed]})
             } else {
                 message.channel.send("Invalid command")
             }
@@ -32,7 +32,7 @@ module.exports = {
                 if (!list[command.category]) list[command.category] = []
                 list[command.category].push(command.name)
             })
-            var embed = new discord.RichEmbed()
+            var embed = new discord.MessageEmbed()
                 .setTitle("Main Help")
                 .setDescription("Prefix: " + bot.handler.getPrefix(message.guild.id))
             for (category in list) {
@@ -40,9 +40,9 @@ module.exports = {
                 for (cmd in list[category]) {
                     commands.push(list[category][cmd])
                 }
-                embed.addField("**" + category.charAt(0).toUpperCase() + category.slice(1) + "**", commands)
+                embed.addField("**" + category.charAt(0).toUpperCase() + category.slice(1) + "**", commands.join(", "))
             }
-            message.channel.send(embed)
+            message.channel.send({embeds: [embed]})
         }
     }
 }

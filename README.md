@@ -15,7 +15,7 @@ npm i @tomdev/discord.js-command-handler
 ```javascript
 //discord.js libary
 var discord = require("discord.js")
-var client = new discord.Client()
+var client = new discord.Client({intents: [discord.Intents.FLAGS.GUILDS, discord.Intents.FLAGS.GUILD_MESSAGES]})
 
 var handler = require("@tomdev/discord.js-command-handler")
 //initialize handler, pass client, folder with command files, prefix
@@ -28,7 +28,7 @@ var prefix = "!" //same for every server
 var cmdhandler = new handler(client, "/commands", prefix)
 
 //handle command on message event
-client.on("message", (message) => {
+client.on("messageCreated", (message) => {
     cmdhandler.handleCommand(message)
 })
 ```

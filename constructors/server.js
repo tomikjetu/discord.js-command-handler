@@ -21,7 +21,6 @@ server.prototype.getUserCount = function (options = defaultUserCountOptions) {
         if (options.bots) count += this.guild.members.cache.filter(member => member.user.bot).size;
     } else {
         if (options.users) count += this.guild.members.cache.filter(member => !member.user.bot).filter(member => member.presence.status == "online").size
-        if (options.bots) count += this.guild.members.cache.filter(member => member.user.bot).filter(member => member.presence.status == "online").size
     }
     return count
 }
